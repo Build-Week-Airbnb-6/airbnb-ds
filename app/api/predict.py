@@ -2,43 +2,62 @@ import logging
 import random
 
 from fastapi import APIRouter
+import joblib
 import pandas as pd
+import numpy as np
 from pydantic import BaseModel, Field, validator
+import pickle
+
 
 log = logging.getLogger(__name__)
 router = APIRouter()
 
 
-class Item(BaseModel):
+model = joblib.load("app/api/adaboost.joblib")
+
+
+class Property(BaseModel):
     """Data model to parse the request body JSON."""
 
-    # zipcode: int = Field(..., example=3.14)
-    # accommodates: int = Field(..., example=-42)
-    # room_type: str =
-    # bathrooms: float =
-    # bedrooms: float =
-    # property_type: str =
-    # city: str =
+    beds: int = Field(...)
+    bed_type: str = Field(...)
+    bathrooms: float = Field(...)
+    bedrooms: float = Field(...) 
+    accommodates: int = Field(...)
+    room_type: str = Field(...)
+    cancellation_policy: str = Field(...)
+    property_type: str = Field(...)
 
     def to_df(self):
         """Convert pydantic object to pandas dataframe with 1 row."""
         return pd.DataFrame([dict(self)])
 
-    # @validator('x1')
-    # def x1_must_be_positive(cls, value):
-    #    """Validate that x1 is a positive number."""
-    #    assert value > 0, f'x1 == {value}, must be > 0'
-    #    return value
+    @validator('accommodates')
+    # TODO - add more validators?
+    def accommodates_must_be_positive(cls, value):
+        """Validate that accomodates is a positive number."""
+        assert value > 0, f'accommodates == {value}, must be > 0'
+        return value
 
 
 @router.post('/predict')
-async def predict(item):
+async def predict(property: Property):
     """
     Predict AirBnB rental prices using app data and home features.
-    ### Request Body
-    Currently just accepting text input, will be updated to accept 
+    ### Request body
+    - beds: int
+    - bathrooms: float
+    - bedrooms: float 
+    - accommodates: int
+    - room_type: str
+    - cancellation_policy: str
+    - property_type: str
+
+     
     ### Response 
     '{prediction}$ per night is an optimal price.' 
 """
-    # input will be a dictionary, (item :Item)
-    return '{}$ per night is an optimal price.'.format(random.randrange(50, 550, 10))
+    prediction = model.predict(property.to_df())
+    price = np.exp(prediction[0]) 
+    return '{}$ per night is an optimal price.'.format(round(price))
+
