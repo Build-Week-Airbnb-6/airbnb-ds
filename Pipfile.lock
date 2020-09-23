@@ -314,6 +314,16 @@
             "markers": "python_full_version >= '3.6.1'",
             "version": "==8.1"
         },
+        "xgboost": {
+            "hashes": [
+                "sha256:60763bc2fa4db76a05b8267abb3c2472525dc4d0c944ef880517939f550e2c94",
+                "sha256:9e6c1a94b56c3907a214aa72789d088efa4d294ba5ce50f27582dd6e4a7d1701",
+                "sha256:e5f4abcd5df6767293f31b7c58d67ea38b2689641a95b2cd8ca8935295097a36",
+                "sha256:f9f2df87c07032384ccb5bbbd1d4902fc2da927e663fb0cb722ba01f710bb6a1"
+            ],
+            "index": "pypi",
+            "version": "==1.2.0"
+        },
         "zope.interface": {
             "hashes": [
                 "sha256:0103cba5ed09f27d2e3de7e48bb320338592e2fabc5ce1432cf33808eb2dfd8b",

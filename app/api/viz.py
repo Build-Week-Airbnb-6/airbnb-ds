@@ -1,16 +1,13 @@
-from fastapi import APIRouter, HTTPException
-import pandas as pd
-import plotly.express as px
+from fastapi import APIRouter
 import random
 
 router = APIRouter()
 
 
-@router.get('/get/predict')
+@router.get('/get/test')
 async def viz(placeholder: str):
-    """
-    placeholder
-    
+    """placeholder.
+
     ### Path Parameter
     placeholder : number
 
