@@ -62,8 +62,8 @@ async def predict(property: Property):
     return '{}$ per night is an optimal price.'.format(round(price))
 
 
-# @router.get('/get/{predict}')
-# async def get_predict(property: Property):
+@router.get('/get/{predict}')
+async def get_predict(property: Property):
     """
     Predict AirBnB rental prices using app data and home features.
 
@@ -80,6 +80,6 @@ async def predict(property: Property):
     ### Response 
     '{prediction}$ per night is an optimal price.' 
 """
-    # prediction = model.predict(property.to_df())
-    # price = np.exp(prediction[0]) 
-    # return '{}$ per night is an optimal price.'.format(round(price))
+    prediction = model.predict(property.to_df())
+    price = np.exp(prediction[0]) 
+    return '{}$ per night is an optimal price.'.format(round(price))
