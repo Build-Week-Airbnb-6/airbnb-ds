@@ -53,11 +53,10 @@ async def predict(property: Property):
     - cancellation_policy: str
     - property_type: str
 
-     
+
     ### Response 
     '{prediction}$ per night is an optimal price.' 
 """
     prediction = model.predict(property.to_df())
     price = np.exp(prediction[0]) 
     return '{}$ per night is an optimal price.'.format(round(price))
-
