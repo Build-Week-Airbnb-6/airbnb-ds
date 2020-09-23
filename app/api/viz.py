@@ -1,30 +1,22 @@
-import numpy as np
 from fastapi import APIRouter, HTTPException
+import pandas as pd
+import plotly.express as px
+import random
 
-import joblib
-from predict import Property
-
-#router = APIRouter()
-
-#model = joblib.load("app/api/adaboost.joblib")
+router = APIRouter()
 
 
-#@router.get('/get/predict')
-#async def predict(property: Property):
-"""
-    Predict AirBnB rental prices using app data and home features.
-    ### Request body
-    - beds: int
-    - bathrooms: float
-    - bedrooms: float 
-    - accommodates: int
-    - room_type: str
-    - cancellation_policy: str
-    - property_type: str
+@router.get('/get/predict')
+async def viz(placeholder: str):
+    """
+    placeholder
+    
+    ### Path Parameter
+    placeholder : number
 
-
-    ### Response 
-    '{prediction}$ per night is an optimal price.' 
-"""
-    #prediction = model.predict(property.to_df())
-    #price = np.exp(prediction[0]) 
+    ### Response
+    placeholder string
+    """
+    string = '{}$ per night is an optimal price.'.format(random.randrange(50, 550, 10))
+    # Return Plotly figure as JSON string
+    return string
