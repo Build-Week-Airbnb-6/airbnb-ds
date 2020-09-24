@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 router = APIRouter()
 
 
-model = joblib.load("app/api/adaboost.joblib")
+model = joblib.load("app/api/0.24_grid_XGB.joblib")
 
 
 class Property(BaseModel):
