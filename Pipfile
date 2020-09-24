@@ -13,9 +13,17 @@ requests = "*"
 
 [packages]
 fastapi = "*"
-pandas = "*"
 uvicorn = "*"
 plotly = "*"
+pydantic = "*"
+"plotly.express" = "*"
+joblib = "*"
+sklearn = "*"
+datetime = "*"
+category-encoders = "*"
+scikit-learn = "==0.22.2.post1"
+pandas = "*"
+xgboost = "~=0.90"
 
 [requires]
 python_version = "3.7"
